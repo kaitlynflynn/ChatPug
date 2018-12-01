@@ -1,6 +1,6 @@
 let twilio = require("twilio");
 let express = require("express");
-let credentials = require("./credentials.env");
+let credentials = require("./.env");
 
 let app = express();
 
