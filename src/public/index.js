@@ -26,4 +26,20 @@ $(document).ready(function() {
         error =>
           console.log("error setting up twilio", error) || chatSetupFailed()
       );
+
+      function getUsername() {
+        username = prompt("Enter a username");
+      }
+    
+      function getToken() {
+        return fetch(`/token?username=${username}`)
+          .then(response => {
+            if (response.ok) {
+              return response.text();
+            }
+    
+            throw new Error("Network response was not ok.");
+          })
+          .catch(error => console.log("Error fetching token", error) || error);
+      }
 });
