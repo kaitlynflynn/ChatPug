@@ -100,4 +100,15 @@ $(document).ready(function() {
         $("#btn-chat").click(function() {
           const message = $("#message").val();
           $("#message").val("");
+
+          //send message
+          chatChannel.sendMessage(message);
+        });
+
+        $("#message").on("keydown", function(e) {
+            if (e.keyCode === 13) {
+                $("#btn-chat").click();
+            }
+        });
+    }
 });
