@@ -42,4 +42,62 @@ $(document).ready(function() {
           })
           .catch(error => console.log("Error fetching token", error) || error);
       }
+
+      function getChannelDescriptor(chatClient) {
+        return chatClient
+          .getPublicChannelDescriptors()
+          .then(function(paginator) {
+            if (paginator.items.length > 0) return paginator.items[0];
+            else {
+              chatClient
+                .createChannel({
+                  uniqueName: "general",
+                  friendlyName: "General Chat Channel"
+                })
+                .then(function(newChannel) {
+                  console.log("Created general channel:");
+                  console.log(newChannel);
+                  return newChannel;
+                });
+            }
+          })
+          .then(channel => channel)
+          .catch(error => console.log("error getting channel", error) || error);
+      }
+    
+      function onMessageAdded(message) {
+        let template = $("#new-message").html();
+        template = template.replace(
+          "{{body}}",
+          `<b>${message.author}:</b> ${message.body}`
+        );
+    
+        $(".chat").append(template);
+      }
+    
+      function chatSetupCompleted() {
+        let template = $("#new-message").html();
+        template = template.replace(
+          "{{body}}",
+          "<b>Chat Setup Completed. Start your conversation!</b>"
+        );
+    
+        $(".chat").append(template);
+      }
+    
+      function chatSetupFailed() {
+        let template = $("#new-message").html();
+        template = template.replace(
+          "{{body}}",
+          "<b>Chat Setup Failed. Contact Admin.</b>"
+        );
+    
+        $(".chat").append(template);
+      }
+    
+      function activateChatBox() {
+        $("#message").removeAttr("disabled");
+        $("#btn-chat").click(function() {
+          const message = $("#message").val();
+          $("#message").val("");
 });
