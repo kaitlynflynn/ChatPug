@@ -1,6 +1,6 @@
 let express = require("express");
 let twilio = require("twilio");
-let env = require("./.env");
+let credentials = require("./config.env");
 
 let app = express();
 const AccessToken = twilio.jwt.AccessToken;
