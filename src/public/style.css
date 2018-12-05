@@ -35,6 +35,11 @@
     margin-right: 5px;
 }
 
+.container {
+    background-image: url("https://wallup.net/wp-content/uploads/2016/12/08/340267-Windows_XP-pug-dog-748x467.jpg");
+    background-size: contain;
+}
+
 .body-panel
 {
     overflow-y: scroll;
