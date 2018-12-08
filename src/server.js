@@ -1,16 +1,10 @@
 let express = require("express");
 let twilio = require("twilio");
 let credentials = require("./credentials.json");
-// let credentials = require("./.env");
 
 let app = express();
 const AccessToken = twilio.jwt.AccessToken;
 const ChatGrant = AccessToken.ChatGrant;
-
-// const TWILIO_ACCOUNT_SID = "TWILIO_ACCOUNT_SID";
-// const TWILIO_CHAT_SERVICE_SID = "TWILIO_CHAT_SERVICE_SID";
-// const TWILIO_API_KEY = "TWILIO_API_KEY";
-// const TWILIO_API_SECRET = "TWILIO_API_SECRET";
 
 app.get("/token", function(req, res) {
   let username = req.query.username;
@@ -19,18 +13,12 @@ app.get("/token", function(req, res) {
       credentials.TWILIO_ACCOUNT_SID,
       credentials.TWILIO_API_KEY,
       credentials.TWILIO_API_SECRET,
-    //   process.env.TWILIO_ACCOUNT_SID,
-    //   process.env.TWILIO_CHAT_SERVICE_SID,
-    //   process.env.TWILIO_API_KEY,
-    //   process.env.TWILIO_API_SECRET,
       {
           identity: username,
           ttl: 40000
       }
   );
 
-
-// let grant = new ChatGrant({ serviceSid: process.env.TWILIO_CHAT_SERVICE_SID });
 let grant = new ChatGrant({ serviceSid: credentials.TWILIO_CHAT_SERVICE_SID });
 
   token.addGrant(grant);
