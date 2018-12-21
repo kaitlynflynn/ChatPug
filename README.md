@@ -6,7 +6,7 @@ The demo below shows a snippet of the app running locally in action. Notice 3 ch
 ![Demo](https://user-images.githubusercontent.com/32024309/49618175-5e610180-f96c-11e8-8c13-aa14489d9fd1.gif)
 
 ## Deployment
-Coming soon!
+Coming soon - Work in Progress
 
 ## Built With
 For this application I built this entirely with the following:
